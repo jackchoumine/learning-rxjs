@@ -2,11 +2,19 @@
  * @Author      : ZhouQiJun
  * @Date        : 2024-04-01 16:20:17
  * @LastEditors : ZhouQiJun
- * @LastEditTime: 2024-04-01 16:27:33
+ * @LastEditTime: 2024-04-01 18:04:28
  * @Description : 
 -->
 <script setup>
+import { onMounted } from 'vue'
 import TimeSenseJQ from './00Demos/TimeSenseJQ.vue'
+import { observable } from "./00Demos/Observable";
+onMounted(() => {
+  observable.on(receiveMsg)
+})
+function receiveMsg(data) {
+  console.log(data)
+}
 </script>
 
 <template>

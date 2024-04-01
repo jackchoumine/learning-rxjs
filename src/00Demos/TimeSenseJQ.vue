@@ -1,8 +1,9 @@
 <script setup>
 import { onMounted } from 'vue';
 import $ from "jquery";
-import Rx from "rxjs";
-
+import Rx, { Observable } from "rxjs";
+import DemoOne from './DemoOne.vue'
+import DemoTwo from './DemoTwo.vue'
 onMounted(() => {
     // jqTimeSense()
     rxTimeSense()
@@ -60,6 +61,22 @@ function rxTimeSense() {
     // RxJS 的实现，通过数据流的方式，将按下事件和抬起事件分开处理，避免了变量交叉访问，代码更加清晰，易于维护
     // RxJS 的实现是一个一个的函数，每个函数只对输入的参数进行响应，然后返回结果
 }
+// source$ 是发布者 负责产生三个整数
+const source$ = Observable.of(1, 2, 3, 'hello rxjs');
+// 通过 subscribe 方法，建立发布者和观察者之间的订阅关系
+// console.log 是观察者，负责输出整数
+source$.subscribe(console.log);
+
+const onSubscribe = ob => {
+    ob.next(10)
+    ob.next(20)
+    ob.next(30)
+}
+const source$$ = new Observable(onSubscribe)
+const observer = {
+    next: console.log,
+}
+source$$.subscribe(observer)
 </script>
 
 <template>
@@ -69,6 +86,9 @@ function rxTimeSense() {
     <div>你的时间: <span id="hold-time"></span>毫秒</div>
     <div id="rank"></div>
   </div>
+  <h2>发布-订阅模式</h2>
+  <DemoOne/>
+  <DemoTwo/>
 </template>
 
 <style scoped lang="scss">
