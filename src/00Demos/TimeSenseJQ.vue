@@ -70,18 +70,29 @@ source$.subscribe(console.log);
 const onSubscribe = ob => {
     let num = 10
     const timer = setInterval(() => {
+        console.log('in onSubscribe', num)
         ob.next(num)
         num += 10
-        if (num > 30) {
+        // if (num > 30) {
+        //     clearInterval(timer)
+        // }
+    }, 1000)
+    return {
+        unsubscribe() {
             clearInterval(timer)
         }
-    }, 1000)
+
+    }
 }
 const source$$ = new Observable(onSubscribe)
 const observer = {
     next: console.log,
 }
-source$$.subscribe(observer)
+const subscription = source$$.subscribe(observer)
+// 5秒后退订
+setTimeout(() => {
+    subscription.unsubscribe()
+}, 5000)
 </script>
 
 <template>
