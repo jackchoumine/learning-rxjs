@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from 'vue';
 import $ from "jquery";
-import Rx, { Observable } from "rxjs";
+import Rx, { Observable, map } from "rxjs";
 import DemoOne from './DemoOne.vue'
 import DemoTwo from './DemoTwo.vue'
 onMounted(() => {
@@ -88,7 +88,8 @@ const source$$ = new Observable(onSubscribe)
 const observer = {
     next: console.log,
 }
-const subscription = source$$.subscribe(observer)
+const map$ = source$$.map(x => x * 2)
+const subscription = map$.subscribe(observer)
 // 5秒后退订
 setTimeout(() => {
     subscription.unsubscribe()
