@@ -68,9 +68,14 @@ const source$ = Observable.of(1, 2, 3, 'hello rxjs');
 source$.subscribe(console.log);
 
 const onSubscribe = ob => {
-    ob.next(10)
-    ob.next(20)
-    ob.next(30)
+    let num = 10
+    const timer = setInterval(() => {
+        ob.next(num)
+        num += 10
+        if (num > 30) {
+            clearInterval(timer)
+        }
+    }, 1000)
 }
 const source$$ = new Observable(onSubscribe)
 const observer = {
@@ -87,8 +92,8 @@ source$$.subscribe(observer)
     <div id="rank"></div>
   </div>
   <h2>发布-订阅模式</h2>
-  <DemoOne/>
-  <DemoTwo/>
+  <DemoOne />
+  <DemoTwo />
 </template>
 
 <style scoped lang="scss">

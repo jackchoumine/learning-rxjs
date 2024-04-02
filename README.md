@@ -173,7 +173,6 @@ while (!iterator.isDone()) {
 
 rxjs 中的 observable 对象结合了观察者模式和迭代器模式，它不仅可以产生消息，还可以处理消息。
 
-
 > observable = publisher + iterator， observable 对象，代表一段时间内发生的一系列事件(消息)。在 RxJS 中，作为迭代器的使用者，并不需要主动去从 Observable 中“拉”数据，而是只要 subscribe 上 Observable 对象之后，自然就能够收到消息的推送，这就是观察者模式和迭代器两种模式结合的强大之处。
 
 ```js
@@ -193,10 +192,36 @@ const source$$ = new Observable(onSubscribe)
 const observer = {
     next: console.log,
 }
-// 3、订阅 source$$ 发布的消息 
+// 3、订阅 source$$ 发布的消息
 // 只有调用了 subscribe 方法，才会触发 onSubscribe 函数执行，发布者和订阅者之间建立了订阅关系
 source$$.subscribe(observer)
 ```
+
 > 单独一个 observable 对象或则单独一个 observer 对象，是没有任何作用的，只有通过 subscribe 方法，将 observable 对象和 observer 对象关联起来，才能够实现消息的推送。
 
 在 RxJS 中，Observable 是一个特殊类，它接受一个处理 Observer 的函数，即该**函数的参数是订阅者**，而 Observer 就是一个普通的对象，没有什么神奇之处，对 Observer 对象的要求，它必须包含一个名为 next 的属性，这个属性的值是一个函数，用于接受发布者发布的消息。
+
+> 间隔推送数据
+
+Observable 对象负责推送消息，间隔时间也该由它负责。观察者 Observer，只需要被动接受推送数据来处理，而不用关心数据何时产生。
+
+```js
+import {
+    Observable
+} from "rxjs"
+const onSubscribe = ob => {
+    let number = 10
+    const timer = setInterval(() => {
+        ob.next(number)
+        number += 10
+        if (number > 30) {
+            clearInterval(timer)
+        }
+    }, 1000)
+}
+const source$$ = new Observable(onSubscribe)
+const observer = {
+    next: console.log,
+}
+source$$.subscribe(observer)
+```
