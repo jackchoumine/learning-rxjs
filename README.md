@@ -54,22 +54,22 @@ rxjs 中的数据流是由 `Observable` 对象来表示的， `Observable` 实�
 
 ```js
 class Observable {
-  private observers = []
-  constructor() {
-    // 记录所有订阅者
-    this.observers = []
-  }
-  on(f) {
-    // 订阅消息
-    this.observers.push(f)
-  }
-  off(f) {
-    this.observers = this.observers.filter((subscriber) => subscriber !== f)
-  }
-  emit(data) {
-    // 发布消息，通知所有订阅者
-    this.observers.forEach((observer) => observer(data))
-  }
+    private observers = []
+    constructor() {
+        // 记录所有订阅者
+        this.observers = []
+    }
+    on(f) {
+        // 订阅消息
+        this.observers.push(f)
+    }
+    off(f) {
+        this.observers = this.observers.filter((subscriber) => subscriber !== f)
+    }
+    emit(data) {
+        // 发布消息，通知所有订阅者
+        this.observers.forEach((observer) => observer(data))
+    }
 }
 
 export const observable = new Observable()
@@ -81,16 +81,19 @@ export const observable = new Observable()
 
 ```html
 <script setup>
-import { observable } from './Observable'
-function onClick() {
-    observable.emit(1)
-}
+    import {
+        observable
+    } from './Observable'
+
+    function onClick() {
+        observable.emit(1)
+    }
 </script>
 
 <template>
-  <div class="DemoOne">
-    <button @click="onClick">发送消息</button>
-  </div>
+    <div class="DemoOne">
+        <button @click="onClick">发送消息</button>
+    </div>
 </template>
 ```
 
@@ -98,26 +101,34 @@ function onClick() {
 
 ```html
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue';
-import { observable } from './Observable'
-const msg = ref(0)
-onMounted(() => {
-    observable.on(observer)
-})
-onUnmounted(() => {
-    observable.un(observer)
-})
-function observer(data) {
-    msg.value += data
-}
+    import {
+        onMounted,
+        onUnmounted,
+        ref
+    } from 'vue';
+    import {
+        observable
+    } from './Observable'
+    const msg = ref(0)
+    onMounted(() => {
+        observable.on(observer)
+    })
+    onUnmounted(() => {
+        observable.un(observer)
+    })
+
+    function observer(data) {
+        msg.value += data
+    }
 </script>
 
 <template>
-  <div class="DemoOne">
-    <p>{{ msg }}</p>
-  </div>
+    <div class="DemoOne">
+        <p>{{ msg }}</p>
+    </div>
 </template>
 ```
+
 `on` 方法用于订阅消息，使发布者和订阅者产生了关联。
 
 ```js
@@ -139,6 +150,10 @@ source$.subscribe(console.log);
 
 3. 发布者和观察者之间的对应关系，即何时调用 subscribe。
 
+> 在编程的世界中，所谓“拉”（pull）或者“推”（push），都是从数据消费者角度的描述，比如，在网页应用中，如果是网页主动通过 AJAX 请求从服务器获取数据，这是“拉”，如果网页和服务器建立了 websocket 通道，然后，不需要网页主动请求，服务器都可以通过 websocket 通道推送数据到网页中，这是“推”。
+
+> 在观察者模式中，发布者是“推”数据给观察者。
+
 #### 迭代器模式
 
 迭代器模式提供一种方法**顺序访问**一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示，使用者不需要知道迭代器内部实现。
@@ -158,7 +173,8 @@ while (!iterator.isDone()) {
 
 rxjs 中的 observable 对象结合了观察者模式和迭代器模式，它不仅可以产生消息，还可以处理消息。
 
-> observable = publisher + iterator， observable 对象，代表一段时间内发生的一系列事件(消息)。
+
+> observable = publisher + iterator， observable 对象，代表一段时间内发生的一系列事件(消息)。在 RxJS 中，作为迭代器的使用者，并不需要主动去从 Observable 中“拉”数据，而是只要 subscribe 上 Observable 对象之后，自然就能够收到消息的推送，这就是观察者模式和迭代器两种模式结合的强大之处。
 
 ```js
 import {
@@ -171,19 +187,16 @@ const onSubscribe = ob => {
     ob.next(30)
 }
 // 1、创建一个 observable 对象，通过 onSubscribe 函数产生消息
+// 通过 观察者的 next 方法，将消息推送给观察者
 const source$$ = new Observable(onSubscribe)
 // 2、订阅者
 const observer = {
     next: console.log,
 }
-// 3、订阅 source$$ 发布的消息
+// 3、订阅 source$$ 发布的消息 
+// 只有调用了 subscribe 方法，才会触发 onSubscribe 函数执行，发布者和订阅者之间建立了订阅关系
 source$$.subscribe(observer)
 ```
+> 单独一个 observable 对象或则单独一个 observer 对象，是没有任何作用的，只有通过 subscribe 方法，将 observable 对象和 observer 对象关联起来，才能够实现消息的推送。
 
 在 RxJS 中，Observable 是一个特殊类，它接受一个处理 Observer 的函数，即该**函数的参数是订阅者**，而 Observer 就是一个普通的对象，没有什么神奇之处，对 Observer 对象的要求，它必须包含一个名为 next 的属性，这个属性的值是一个函数，用于接受发布者发布的消息。
-
-实现一个观察者模式：
-
-```js
-
-```
