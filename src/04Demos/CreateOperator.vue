@@ -1,5 +1,5 @@
 <script setup>
-import { useRepeat, useNever, useThrow, useEmpty, useRepeat2, useRange, useOf, useGenerate, useRange2 } from '../hooks'
+import { useInterval, useTimer, useRepeat, useNever, useThrow, useEmpty, useRepeat2, useRange, useOf, useGenerate, useRange2 } from '../hooks'
 // useOf()
 // useRange()
 // useGenerate()
@@ -9,6 +9,8 @@ import { useRepeat, useNever, useThrow, useEmpty, useRepeat2, useRange, useOf, u
 // useEmpty()
 // useThrow()
 // useNever()
+// useInterval()
+useTimer()
 </script>
 
 <template>

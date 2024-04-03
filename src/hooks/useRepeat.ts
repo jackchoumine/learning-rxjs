@@ -2,16 +2,16 @@ import { Observable } from 'rxjs'
 
 export function useRepeat() {
   const source$ = Observable.of(1, 2, 3)
-  //   const repeated$ = source$.repeat(2)
-  //   repeated$.subscribe({
-  //     next: val => console.log(val),
-  //   })
-  source$.subscribe({
+  const repeated$ = source$.repeat(2)
+  repeated$.subscribe({
     next: val => console.log(val),
   })
-  source$.subscribe({
-    next: val => console.log(val),
-  })
+  // source$.subscribe({
+  //   next: val => console.log(val),
+  // })
+  // source$.subscribe({
+  //   next: val => console.log(val),
+  // })
 }
 
 export function useRepeat2() {
