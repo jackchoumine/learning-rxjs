@@ -8,6 +8,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import TimeSenseJQ from './00Demos/TimeSenseJQ.vue'
+import CreateOperator from './04Demos/CreateOperator.vue'
 import { observable } from "./00Demos/Observable";
 onMounted(() => {
   observable.on(receiveMsg)
@@ -18,7 +19,8 @@ function receiveMsg(data) {
 </script>
 
 <template>
-  <TimeSenseJQ/>
+  <!-- <TimeSenseJQ/> -->
+  <CreateOperator/>
 </template>
 
 <style scoped>
