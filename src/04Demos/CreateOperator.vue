@@ -1,11 +1,14 @@
 <script setup>
-import { useRepeat, useRepeat2, useRange, useOf, useGenerate, useRange2 } from '../hooks'
+import { useRepeat, useNever, useThrow, useEmpty, useRepeat2, useRange, useOf, useGenerate, useRange2 } from '../hooks'
 // useOf()
 // useRange()
 // useGenerate()
 // useRange2(1, 2, 5)
 // useRepeat()
-useRepeat2()
+// useRepeat2()
+// useEmpty()
+// useThrow()
+// useNever()
 </script>
 
 <template>
