@@ -1,5 +1,5 @@
 <script setup>
-import { useInterval, useTimer, useRepeat, useNever, useThrow, useEmpty, useRepeat2, useRange, useOf, useGenerate, useRange2 } from '../hooks'
+import { useRepeatWhen, useAjax, useFromEvent, useFrom, useInterval, useTimer, useRepeat, useNever, useThrow, useEmpty, useRepeat2, useRange, useOf, useGenerate, useRange2 } from '../hooks'
 // useOf()
 // useRange()
 // useGenerate()
@@ -10,12 +10,17 @@ import { useInterval, useTimer, useRepeat, useNever, useThrow, useEmpty, useRepe
 // useThrow()
 // useNever()
 // useInterval()
-useTimer()
+// useTimer()
+// useFrom()
+// useFromEvent()
+// useAjax()
+// useRepeatWhen()
 </script>
 
 <template>
   <div class='CreateOperator'>
     <h2>of -- 列举数据</h2>
+    <button id="star-btn">get vue star</button>
   </div>
 </template>
 
