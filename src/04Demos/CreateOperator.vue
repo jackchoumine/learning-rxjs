@@ -1,5 +1,7 @@
 <script setup>
-import { useRepeatWhen, useAjax, useFromEvent, useFrom, useInterval, useTimer, useRepeat, useNever, useThrow, useEmpty, useRepeat2, useRange, useOf, useGenerate, useRange2 } from '../hooks'
+import {
+  useDefer, useRepeatWhen, useAjax, useFromEvent, useFrom, useInterval, useTimer, useRepeat, useNever, useThrow, useEmpty, useRepeat2, useRange, useOf, useGenerate, useRange2
+} from '../hooks'
 // useOf()
 // useRange()
 // useGenerate()
@@ -15,6 +17,7 @@ import { useRepeatWhen, useAjax, useFromEvent, useFrom, useInterval, useTimer, u
 // useFromEvent()
 // useAjax()
 // useRepeatWhen()
+// useDefer()
 </script>
 
 <template>
