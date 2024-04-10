@@ -225,3 +225,14 @@ const observer = {
 }
 source$$.subscribe(observer)
 ```
+## 有用的资源
+
+- [reactive how](https://reactive.how/)
+
+- [rxjs弹珠图](https://rxmarbles.com/)
+
+- [rxjs弹珠图2](https://thinkrx.io/)
+
+- [RxJS 5 基本原理](https://rxjs-cn.github.io/RxJS-Ultimate-CN/)
+
+- [学习 RxJS](https://rxjs-cn.github.io/learn-rxjs-operators/)
