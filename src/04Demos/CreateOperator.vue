@@ -1,6 +1,12 @@
 <script setup>
 import {
-  useDefer, useRepeatWhen, useAjax, useFromEvent, useFrom, useInterval, useTimer, useRepeat, useNever, useThrow, useEmpty, useRepeat2, useRange, useOf, useGenerate, useRange2
+  useZip,
+  useMerge,
+  useConcat,
+  useDefer,
+  useRepeatWhen, useAjax, useFromEvent, useFrom,
+  useInterval, useTimer, useRepeat, useNever,
+  useThrow, useEmpty, useRepeat2, useRange, useOf, useGenerate, useRange2
 } from '../hooks'
 // useOf()
 // useRange()
@@ -18,10 +24,13 @@ import {
 // useAjax()
 // useRepeatWhen()
 // useDefer()
+// useConcat()
+// useMerge()
+useZip()
 </script>
 
 <template>
-  <div class='CreateOperator'>
+  <div class="CreateOperator">
     <h2>of -- 列举数据</h2>
     <button id="star-btn">get vue star</button>
   </div>
@@ -32,3 +41,4 @@ import {
   // scss code
 }
 </style>
+
