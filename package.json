@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "release": "release-it"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
+    "release-it": "^17.6.0",
     "sass": "^1.72.0",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
