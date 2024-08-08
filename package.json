@@ -18,6 +18,7 @@
     "vue": "^3.4.21"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^8.0.1",
     "@vitejs/plugin-vue": "^5.0.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
